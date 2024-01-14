@@ -156,7 +156,8 @@
 				                                                                                 r_{i + 1} \\ r_{i + 2}
 			                                                                                 \end{bmatrix}
 		            \end{align*}
-		            As the next step $k = i + 1$ holds, then the general case $i$ must hold as well.
+		            We have concluded that the base case holds, and that the next step $i + 1$ holds if the general case $i$ holds,
+		            thus the statement is true by mathematical induction.
 
 		            \newpage
 
@@ -180,11 +181,18 @@
 				                                        s_{i + 1} & t_{i + 1} \\
 			                                        \end{bmatrix}                \\
 			                      & = \begin{bmatrix}
-				                          s_i + 1                  & t_{i + 1}               \\
+				                          s_{i + 1}                & t_{i + 1}               \\
 				                          s_i - q_{i + 1}s_{i + 1} & t_i -q_{i + 1}t_{i + 1}
 			                          \end{bmatrix}
+			            \intertext{The extended Euclidean algorithm defines $s_{i + 2} = s_i - q_{i + 1}s_{i + 1}$ and $t_{i + 2} = t_i - q_{i + 1}t_{i + 1}$.
+			            Thus we can write $R_{i + 1}$ as:}
+			            R_{i + 1} & = \begin{bmatrix}
+				                          s_{i + 1} & t_{i + 1} \\
+				                          s_{i + 2} & t_{i + 2}
+			                          \end{bmatrix}
 		            \end{align*}
-
+		            This proves that if $R_i$ holds, then so does $R_{i + 1}$. With the base case and induction step proven to be true,
+		            the statement is true by mathematical induction when $i = 0, 1, 2, \dots, l$.
 	      \end{enumerate}
 	      \newpage
 \end{enumerate}
