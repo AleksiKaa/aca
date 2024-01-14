@@ -1,0 +1,191 @@
+\documentclass[11pt,a4paper]{article}
+\input{auxiliary.tex}
+
+%-----------------------------------------------
+%-----------------------------------------------
+
+\begin{document}
+\begin{enumerate}
+	\item
+	      \begin{enumerate}
+		      \item $a = x + x^2$, \hspace{1cm} $b = 1 + x + x^3$, \hspace{1cm} $a, b \in \mathbb{Z}_2[x]$
+		            \begin{align*}
+			            a \cdot b & = (x + x^2) \cdot (1 + x + x^3)   \\
+			                      & = x + x^2 + x^4 + x^2 + x^3 + x^5 \\
+			                      & =x + x^3 + x^4 + x^5
+		            \end{align*}
+		      \item $a = 1 + x^2 + x^3 + x^4 + x^6$, \hspace{1cm} $b = 1 + x^3 + x^4$, \hspace{1cm} $a, b \in \mathbb{Z}_2[x]$
+		            \begin{center}
+			            \begin{tabular}{ c|c|c }
+
+				            i & q         & r                           \\
+				            \hline
+				            0 & 0         & $1 + x^2 + x^3 + x^4 + x^6$ \\
+				            1 & $x^2$     & $1 + x^3 + x^4 + x^5$       \\
+				            2 & $x^2 + x$ & $1 + x + x^3$               \\
+			            \end{tabular}
+		            \end{center}
+		            The quotient of $a / b$ is $x^2 + x$ and the remainder is $1 + x + x^3$.
+	      \end{enumerate}
+
+	      \newpage
+
+	\item
+	      \begin{enumerate}
+		      \item Let  $f = 1234567$ and $g = 123$. Running the extended Euclidean algorithm on these inputs, we obtain:
+		            \begin{center}
+			            \begin{tabular}{l|l|l|l|l}
+				              & r       & s   & t        & q     \\
+				            \hline
+				            0 & 1234567 & 1   & 0        & 0     \\
+				            1 & 123     & 0   & 1        & 10037 \\
+				            2 & 16      & 1   & -10037   & 7     \\
+				            3 & 11      & -7  & 70260    & 1     \\
+				            4 & 5       & 8   & -80297   & 2     \\
+				            5 & 1       & -23 & 230854   & 5     \\
+				            6 & 0       & 123 & -1234567 & 0     \\
+			            \end{tabular}
+		            \end{center}
+
+		            The greatest common divisor of $f$ and $g$ is the last non-zero remainder $r_i$. Thus $gcd(f, g) = 1$.
+
+		            TODO: find $g^{-1} \in \mathbb{Z}_f$
+
+		      \item Let  $f = 1 + x + x^3 + x^4$ and $g = 1 + x^4$. Running the extended Euclidean algorithm on these inputs, we obtain:
+		            \begin{center}
+			            \begin{tabular}{l|l|l|l|l}
+				            i & r                   & s         & t             & q   \\
+				            \hline
+				            0 & $x^4 + x^3 + x + 1$ & 1         & 0             & 0   \\
+				            1 & $x^4 + 1$           & 0         & 1             & 1   \\
+				            2 & $x^3 + x$           & 1         & 1             & $x$ \\
+				            3 & $x^2 + 1$           & $x$       & $x + 1$       & $x$ \\
+				            4 & 0                   & $x^2 + 1$ & $x^2 + x + 1$ & 0   \\
+			            \end{tabular}
+		            \end{center}
+		            Like in the previous section, $gcd(f, g)$ is the final non-zero remainder $r_i$, thus it is $x^2 + 1$.
+	      \end{enumerate}
+
+	      \newpage
+
+	\item The Lagrange polynomial $l_i$ for row $i$ of the Vandermonde matrix yields a polynomial of the form
+	      $\prod^d_{_{j = 0}^{j \neq i}}\frac{x - \xi_j}{\xi_i - \xi_j} =  \sum_{k=0}^d
+		      \lambda_{ik}x^k$. By arranging the coefficients $\lambda_{ik}$ of the polynomial in the form of a matrix, we get:
+	      \begin{align*}
+		      L = \begin{bmatrix}
+			          \lambda_{00} & \lambda_{01} & \ldots & \lambda_{0d} \\
+			          \lambda_{10} & \lambda_{11} & \ldots & \lambda_{1d} \\
+			          \vdots       & \vdots       & \ddots & \vdots       \\
+			          \lambda_{d0} & \lambda_{d1} & \ldots & \lambda_{dd}
+		          \end{bmatrix}
+	      \end{align*}
+	      Now, computing the matrix multiplication
+	      \begin{align*}
+		      \Xi \cdot L & = \begin{bmatrix}
+			                      \sum_{k= 0}^{d}\lambda_{k0}\xi_0^k & \sum_{k= 0}^{d}\lambda_{k1}\xi_0^k & \ldots & \sum_{k= 0}^{d}\lambda_{k2}\xi_0^k \\
+			                      \sum_{k= 0}^{d}\lambda_{k0}\xi_1^k & \sum_{k= 0}^{d}\lambda_{k1}\xi_1^k & \ldots & \sum_{k= 0}^{d}\lambda_{k2}\xi_1^k \\
+			                      \vdots                             & \vdots                             & \ddots & \vdots                             \\
+			                      \sum_{k= 0}^{d}\lambda_{k0}\xi_d^k & \sum_{k= 0}^{d}\lambda_{k1}\xi_d^k & \ldots & \sum_{k= 0}^{d}\lambda_{k2}\xi_d^k \\
+		                      \end{bmatrix} \\
+		                  & = \begin{bmatrix}
+			                      l_0(\xi_0) & l_1(\xi_0) & \ldots & l_d(\xi_0) \\
+			                      l_0(\xi_1) & l_1(\xi_1) & \ldots & l_d(\xi_1) \\
+			                      \vdots     & \vdots     & \ddots & \vdots     \\
+			                      l_0(\xi_d) & l_1(\xi_d) & \ldots & l_d(\xi_d)
+		                      \end{bmatrix}                                                                         \\
+		      \intertext{Notice from the product form of the Lagrange polynomial that $l_i(\xi_j) = 0$, for any $\xi_j \neq \xi_i, \xi_j \in [0, d]$,
+			      and $l_i(\xi_i) = 1$. Thus the multiplication results in:}
+		                  & = \begin{bmatrix}
+			                      1      & 0      & \ldots & 0      \\
+			                      0      & 1      & \ldots & 0      \\
+			                      \vdots & \vdots & \ddots & \vdots \\
+			                      0      & 0      & \ldots & 1
+		                      \end{bmatrix} = \mathbb{I}
+	      \end{align*}
+	      Since the result of the multiplication is the identity matrix, the Vandermonde matrix is invertible, and its inverse $\Xi^{-1} =
+		      L$.
+	      \newpage
+
+	\item
+	      \begin{enumerate}
+		      \item We prove this claim with induction on $i$. According to the algorithm's definition, $R_0 = \begin{bmatrix}
+				            1 & 0 \\ 0 & 1
+			            \end{bmatrix}$. For the base case $i = 0$:
+		            \begin{align*}
+			            R_0\begin{bmatrix}
+				               f \\
+				               g
+			               \end{bmatrix} & = \begin{bmatrix}
+				                                 s_0 & t_0 \\
+				                                 s_1 & t_1
+			                                 \end{bmatrix} \begin{bmatrix}
+				                                               f \\ g
+			                                               \end{bmatrix}   \\
+			                               & = \begin{bmatrix}
+				                                   1 & 0 \\
+				                                   0 & 1
+			                                   \end{bmatrix} \begin{bmatrix}
+				                                                 f \\ g
+			                                                 \end{bmatrix} \\
+			                               & = \begin{bmatrix}
+				                                   f \\ g
+			                                   \end{bmatrix}
+		            \end{align*}
+		            Assume that the statement holds for general $i$. Case $k = i + 1$:
+		            \begin{align*}
+			                                                                    & R_k\begin{bmatrix}
+				                                                                         f                  \\ g                   \end{bmatrix}         \\
+			                                                                    & = R_{i + 1}\begin{bmatrix}
+				                                                                                 f                  \\ g                   \end{bmatrix} \\
+			                                                                    & = Q_{i + 1}R_i\begin{bmatrix}
+				                                                                                    f \\ g
+			                                                                                    \end{bmatrix}                                       \\
+			                                                                    & = Q_{i + 1}\begin{bmatrix}
+				                                                                                 r_i \\ r_{i + 1}
+			                                                                                 \end{bmatrix}                                         \\
+			                                                                    & = \begin{bmatrix}
+				                                                                        0 & 1 \\ 1 & -q_{i + 1}         \end{bmatrix} \begin{bmatrix}
+				                                                                                                                      r_i \\ r_{i + 1}
+			                                                                                                                      \end{bmatrix}    \\
+			                                                                    & = \begin{bmatrix}
+				                                                                        r_{i + 1} \\ r_i - q_{i + 1}r_{i + 1}
+			                                                                        \end{bmatrix}
+			            \intertext{The Extended Euclidean algorithm defines $r_{i + 2}$ as $r_{i} - q_{i + 1}r_{i + 1}$. Thus:}
+			            R_{i + 1}\begin{bmatrix}
+				                     f                  \\ g                   \end{bmatrix} & = \begin{bmatrix}
+				                                                                                 r_{i + 1} \\ r_{i + 2}
+			                                                                                 \end{bmatrix}
+		            \end{align*}
+		            As the next step $k = i + 1$ holds, then the general case $i$ must hold as well.
+
+		            \newpage
+
+		      \item Let $R_i = \begin{bmatrix}
+				            s_i & t_i \\ s_{i + 1} & t_{i + 1}
+			            \end{bmatrix}$. We give a proof of this by induction on $i$.
+
+		            Base case: $i = 0$ \\
+		            This is clearly always true, since the algorithm initializes the values of $R_0$ as $\begin{bmatrix}
+				            1 & 0 \\ 0 & 1
+			            \end{bmatrix}$ in the beginning of the algorithm.
+
+		            Induction step: Show that if $R_i$ holds for every $i \geq 0$, then $R_{i + 1}$ holds as well. It follows that:
+		            \begin{align*}
+			            R_{i + 1} & = Q_{i + 1}R_i                                       \\
+			                      & = \begin{bmatrix}
+				                          0 & 1          \\
+				                          1 & -q_{i + 1}
+			                          \end{bmatrix} \begin{bmatrix}
+				                                        s_i       & t_i       \\
+				                                        s_{i + 1} & t_{i + 1} \\
+			                                        \end{bmatrix}                \\
+			                      & = \begin{bmatrix}
+				                          s_i + 1                  & t_{i + 1}               \\
+				                          s_i - q_{i + 1}s_{i + 1} & t_i -q_{i + 1}t_{i + 1}
+			                          \end{bmatrix}
+		            \end{align*}
+
+	      \end{enumerate}
+	      \newpage
+\end{enumerate}
+\end{document}
