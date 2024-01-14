@@ -193,7 +193,48 @@
 		            \end{align*}
 		            This proves that if $R_i$ holds, then so does $R_{i + 1}$. With the base case and induction step proven to be true,
 		            the statement is true by mathematical induction when $i = 0, 1, 2, \dots, l$.
+
+		            \newpage
+		      \item For case $i = l$:
+		            \begin{align*}
+			            R_l\begin{bmatrix}
+				               f \\ g
+			               \end{bmatrix}                  & = \begin{bmatrix}
+				                                                  r_l \\ r_{l + 1}
+			                                                  \end{bmatrix}                 \\
+			            Q_lR_{l - 1}\begin{bmatrix}
+				                        f \\ g
+			                        \end{bmatrix}         & = \begin{bmatrix}
+				                                                  r_l \\ 0
+			                                                  \end{bmatrix}                  \\
+			            Q_l^{-1}Q_lR_{l - 1}\begin{bmatrix}
+				                                f \\ g
+			                                \end{bmatrix} & = Q_l^{-1}\begin{bmatrix}
+				                                                          r_l \\ 0
+			                                                          \end{bmatrix}          \\
+			            R_{l - 1}\begin{bmatrix}
+				                     f \\ g
+			                     \end{bmatrix}            & = \begin{bmatrix}
+				                                                  q_l & 1 \\ 1 & 0
+			                                                  \end{bmatrix} \begin{bmatrix}
+				                                                                r_l \\ 0
+			                                                                \end{bmatrix}    \\
+			            R_{l - 1}\begin{bmatrix}
+				                     f \\ g
+			                     \end{bmatrix}            & = \begin{bmatrix}
+				                                                  q_lr_l \\ r_l
+			                                                  \end{bmatrix} = \begin{bmatrix}
+				                                                                  r_{l - 1} \\ r_l
+			                                                                  \end{bmatrix}
+		            \end{align*}
+		            This computation shows that by multiplying both sides with the inverse of $Q_i$ allows traversing
+		            the algorithm backwards, producing the previous values of $r$. This procedure can be repeated until it yields the input values $f, g$.
+		            Additionally, the computation shows that the values of $r_i$ and $r_{i + 1}$ can be written in a form where both have the coefficient
+		            $r_l$ as the only common part, meaning that $r_l$ is the greatest common divisor of every $r_i, r_{i + 1}$
+					
+					\newpage
+
+					
 	      \end{enumerate}
-	      \newpage
 \end{enumerate}
 \end{document}
