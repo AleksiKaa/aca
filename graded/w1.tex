@@ -49,7 +49,9 @@
 
 		            The greatest common divisor of $f$ and $g$ is the last non-zero remainder $r_i$. Thus $gcd(f, g) = 1$.
 
-		            TODO: find $g^{-1} \in \mathbb{Z}_f$
+		            Finding $g^{-1} \in \mathbb{Z}_f$ can be found by searching the output of the algorithm. The
+		            inverse of $g$ is the element $t_i$, where $r_i = 1$, since the equation $s_if + t_ig = 1$ is
+		            equivalent to $t_ig \equiv 1 \mod{f}$. Thus $g^{-1}\in \mathbb{Z}_f$ is 230854.
 
 		      \item Let  $f = 1 + x + x^3 + x^4$ and $g = 1 + x^4$. Running the extended Euclidean algorithm on these inputs, we obtain:
 		            \begin{center}
