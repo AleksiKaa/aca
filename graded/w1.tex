@@ -231,10 +231,28 @@
 		            the algorithm backwards, producing the previous values of $r$. This procedure can be repeated until it yields the input values $f, g$.
 		            Additionally, the computation shows that the values of $r_i$ and $r_{i + 1}$ can be written in a form where both have the coefficient
 		            $r_l$ as the only common part, meaning that $r_l$ is the greatest common divisor of every $r_i, r_{i + 1}$
-					
-					\newpage
 
-					
+		            \newpage
+
+		      \item Insert the statement of (b) in to (a). This gives us:
+		            \begin{align*}
+			            R_i\begin{bmatrix}
+				               f \\ g
+			               \end{bmatrix} =
+			            \begin{bmatrix}
+				            s_i       & t_i       \\
+				            s_{i + 1} & t_{i + 1}
+			            \end{bmatrix} \begin{bmatrix}
+				                          f \\ g
+			                          \end{bmatrix} = & \begin{bmatrix}
+				                                            s_if + t_ig \\
+				                                            s_{i + 1}f + t_{i + 1}g
+			                                            \end{bmatrix} = \begin{bmatrix}
+				                                                            r_i \\
+				                                                            r_{i + 1}
+			                                                            \end{bmatrix}
+		            \end{align*}
+		            This proves that $s_if + t_ig = r_i$.
 	      \end{enumerate}
 \end{enumerate}
 \end{document}
