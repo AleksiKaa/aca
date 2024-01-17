@@ -23,7 +23,7 @@
     \item \begin{enumerate}
               \item Let $\omega = 4$ be a primitive root of order $n = 6$ in $\mathbb{Z}_{13}^6$.
                     \begin{align*}
-                        & \text{DFT}_\omega(f)                      \\ = & \begin{bmatrix}
+                          & \text{DFT}_\omega(f)                  \\ = & \begin{bmatrix}
                             f(\omega^0) & f(\omega^1) & f(\omega^2) & f(\omega^3) & f(\omega^4) & f(\omega^5)
                         \end{bmatrix}^T \\
                         = & \begin{bmatrix}
@@ -72,7 +72,26 @@
 
           \newpage
 
-    \item
+    \item At any $s$, $s \in [n]$:
+          \begin{align*}
+              \hat{f}_{s} & = V_{\omega, s}^{n \times n} \cdot f  \\
+                          & = \sum_{t = 0}^{n - 1} \omega^{st}f_t
+          \end{align*}
+          Note that $n$ is composite, i.e. $n = ab$.
+          By re-indexing $t$ with base $(a, b)$ and $s$ with base $(b, a)$, we get:
+          \begin{align*}
+              t                           & = bk + l, \hspace{2cm} k \in [a], l \in [b]                                                                   \\
+              s                           & = ai + j, \hspace{2cm} i \in [b], j \in [a]                                                                   \\
+              \intertext{Insert these values to $s, t$:}
+              \hat{f}^{b \times a}_{i, j} & = \sum_{l = 0}^{b - 1} \sum_{k = 0}^{a - 1} \omega^{(ai + j)(bk + l)} f_{k, l}^{a \times b}                   \\
+                                          & = \sum_{l \in [b]} \sum_{k \in [a]} \omega^{abik + bjk + ail + jl} f_{k, l}^{a \times b}                      \\
+                                          & = \sum_{l \in [b]} \sum_{k \in [a]} \omega^{abik} \omega^{bjk} \omega^{ail} \omega^{jl} f_{k, l}^{a \times b}
+          \end{align*}
+          Since $\omega^{ab} = 1$, so is $\omega^{abik}$. Thus the expression can be reduced to:
+          \begin{align*}
+              \hat{f}_{i, j}^{b \times a} & = \sum_{l \in [b]} \sum_{k \in [a]} \omega^{bjk}\omega^{ail}\omega^{jl}  f_{k, l}^{a \times b} \\
+                                          & = \sum_{l \in [b]} \omega^{ail}\omega^{jl} \sum_{k \in [a]} \omega^{bjk} f_{k, l}^{a \times b}
+          \end{align*}
 
           \newpage
 
