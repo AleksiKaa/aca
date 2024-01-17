@@ -108,6 +108,36 @@
               \hat{f}_{i, j}^{b \times a} & = ((V_\omega^{a \times b} \odot V_{\omega^b}^{a \times a} f_{k, l}^{a \times b})V_{\omega^a}^{b \times b})^T
           \end{align*}
           The transpose is needed because the terms in the parenthesis result in an array of shape $a \times b$.
+          Now, applying lemma 5 to the equation yields:
+          \begin{align*}
+              \hat{f}_{i, j}^{b \times a} & = ((\text{diag} V_w^{a \times b} V_{\omega^b}^{a \times a} f_{k, l}^{a \times b})V_{\omega^a}^{b \times b})^T
+          \end{align*}
+          Next, by lemma 4.2 $V_{\omega^b}^{a \times a} f_{k, l}^{a \times b} = ((V_{\omega^b} \otimes I_b)f_{k, l})^{a \times b}$.
+          \begin{align*}
+              \hat{f}_{i, j}^{b \times a} & = ((\text{diag} V_w^{a \times b} ((V_{\omega^b}\otimes I_b) f_{k, l})^{a \times b})V_{\omega^a}^{b \times b})^T             \\
+                                          & = ((\text{diag} V_w^{a \times b} (V_{\omega^b}^{a \times b} \otimes I_b) f_{k, l}^{a \times b})V_{\omega^a}^{b \times b})^T
+          \end{align*}
+          Applying lemma 4.2 again to the right-hand side gives us:
+          \begin{align*}
+               & = ((I_a \otimes V_{\omega^a}^{b \times b})((\text{diag} V_w^{a \times b} (V_{\omega^b}^{a \times b} \otimes I_b) f_{k, l}^{a \times b}))^T)^T \\
+               & = (I_a \otimes V_{\omega^a}^{b \times b})((\text{diag} V_w^{a \times b} (V_{\omega^b}^{a \times b} \otimes I_b) f_{k, l}^{a \times b}))       \\
+               & = (I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b) f_{k, l}^{a \times b}
+          \end{align*}
+          Since the vector $f$ is arbitrary, the equation is true even when $f^{a \times b}$ does not alter the values of the right hand side. Thus:
+          \begin{align*}
+                & (I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b) f_{k, l}^{a \times b} \\
+              = & (I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
+          \end{align*}
+          Finally, taking the base transposition matrix of the above yields us:
+          \begin{align*}
+            \hat{F}^{ab \times ab} & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b) \\
+            \hat{F}^{n \times n} & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
+          \end{align*}
+          Which equals the Vandermonde matrix:
+          \begin{align*}            
+            V^{n \times n}_\omega & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
+          \end{align*}
+
 
           \newpage
     \item
