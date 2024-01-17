@@ -89,12 +89,27 @@
           \end{align*}
           Since $\omega^{ab} = 1$, so is $\omega^{abik}$. Thus the expression can be reduced to:
           \begin{align*}
-              \hat{f}_{i, j}^{b \times a} & = \sum_{l \in [b]} \sum_{k \in [a]} \omega^{bjk}\omega^{ail}\omega^{jl}  f_{k, l}^{a \times b} \\
-                                          & = \sum_{l \in [b]} \omega^{ail}\omega^{jl} \sum_{k \in [a]} \omega^{bjk} f_{k, l}^{a \times b}
+              \hat{f}_{i, j}^{b \times a} & = \sum_{l \in [b]} \sum_{k \in [a]} \omega^{bjk}\omega^{ail}\omega^{jl}  f_{k, l}^{a \times b}       \\
+                                          & = \sum_{l \in [b]} \omega^{ail}\omega^{jl} \sum_{k \in [a]} \omega^{bjk} f_{k, l}^{a \times b}       \\
+                                          & = \sum_{l \in [b]} \omega^{a^{il}}\omega^{jl} \sum_{k \in [a]} \omega^{b^{jk}} f_{k, l}^{a \times b}
           \end{align*}
+          Since both $j, k \in [a]$, $ \sum_{k \in [a]}\omega^{b^{jk}}$ can be viewed as the Vandermonde matrix $V_{\omega^b}^{a \times a}$.
+          \begin{align*}
+              \hat{f}_{i, j}^{b \times a} & = \sum_{l \in [b]} \omega^{a^{il}}\omega^{jl} V_{\omega^b}^{a \times a} f_{k, l}^{a \times b}
+          \end{align*}
+          Note that $V_{\omega^b}^{a \times a} f_{k, l}^{a \times b}$ is a array of shape $a \times b$. The term $w^{jl}$ can be viewed as a
+          Vandermonde matrix of shape $a \times b$ with base $\omega$. The product is thus the Hadamard product of the matrices.
+          \begin{align*}
+              \hat{f}_{i, j}^{b \times a} & = \sum_{l \in [b]} \omega^{a^{il}} V_\omega^{a \times b} \odot V_{\omega^b}^{a \times a} f_{k, l}^{a \times b}
+          \end{align*}
+          The remaining sum over $b$ takes the $a \times b$ array, and outputs the array obtained by taking the $a$-point DFT at $\omega^a$
+          for each of the rows $l$ in the matrix. Thus:
+          \begin{align*}
+              \hat{f}_{i, j}^{b \times a} & = ((V_\omega^{a \times b} \odot V_{\omega^b}^{a \times a} f_{k, l}^{a \times b})V_{\omega^a}^{b \times b})^T
+          \end{align*}
+          The transpose is needed because the terms in the parenthesis result in an array of shape $a \times b$.
 
           \newpage
-
     \item
 
           \newpage
