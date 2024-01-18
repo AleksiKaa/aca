@@ -130,16 +130,38 @@
           \end{align*}
           Finally, taking the base transposition matrix of the above yields us:
           \begin{align*}
-            \hat{F}^{ab \times ab} & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b) \\
-            \hat{F}^{n \times n} & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
+              \hat{F}^{ab \times ab} & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b) \\
+              \hat{F}^{n \times n}   & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
           \end{align*}
           Which expands the calculations from one row to all rows, which equals the Vandermonde matrix with root of unity $\omega$:
-          \begin{align*}            
-            V^{n \times n}_\omega & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
+          \begin{align*}
+              V^{n \times n}_\omega & = \prod_{a \iff b}(I_a \otimes V_{\omega^a}^{b \times b})(\text{diag} V_w^{a \times b}) (V_{\omega^b}^{a \times b} \otimes I_b)
           \end{align*}
           \newpage
     \item
-
+          Let $n = 2^d$ with $d \in \mathbb{Z}_{\geq 1}$. Let $\omega$ be a primitive root of unity of order $n$
+          in a ring $R$. It is known that $\omega^n = 1$. Thus:
+          \begin{align*}
+              \omega^{n / 2} & = \omega^{n \cdot \frac{1}{2}} \\
+                             & = 1^{\frac{1}{2}}              \\
+                             & = \sqrt{1}                     \\
+                             & = \pm 1
+          \end{align*}
+          Let us construct a Vandermonde matrix $V_{\omega^{\frac{n}{2}}}^{2 \times 2}$:
+          \begin{align*}
+              V_{\omega_{\frac{n}{2}}}^{2 \times 2} & = \begin{bmatrix}
+                                                            (\omega^{\frac{n}{2}})^{0 \cdot 0} & (\omega^{\frac{n}{2}})^{0 \cdot 1} \\
+                                                            (\omega^{\frac{n}{2}})^{1 \cdot 0} & (\omega^{\frac{n}{2}})^{1 \cdot 1}
+                                                        \end{bmatrix} \\
+                                                    & = \begin{bmatrix}
+                                                            1 & 1                    \\
+                                                            1 & \omega^{\frac{n}{2}}
+                                                        \end{bmatrix}                                                           \\
+                                                    & = \begin{bmatrix}
+                                                            1 & 1  \\
+                                                            1 & -1
+                                                        \end{bmatrix} = H_2
+          \end{align*}
           \newpage
 
     \item
