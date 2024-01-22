@@ -25,16 +25,16 @@
               \item Let $\alpha= 22122.21201$ and $\beta = 22121.22001$ in base $B = 3$. The multiplication $\alpha \beta$ is:
                     \begin{center}
                         \begin{tabular}{crl}
-                                    & 22122&.21201           \\
-                            $\cdot$ & 22121&.22001           \\
+                                    & 22122      & .21201      \\
+                            $\cdot$ & 22121      & .22001      \\
                             \hline
-                                    & 2202201011&.1020220201 \\
+                                    & 2202201011 & .1020220201 \\
                         \end{tabular}
                     \end{center}
                     The result of $\alpha \beta$ in base 3 is 2202201011.1020220201.
 
               \item Let $\alpha = 145.2332632$ and $\beta = 1345053.103$ in base $B = 7$. Calculating the addition $\alpha + \beta$
-              by reducing it to an integer addition by padding the numbers so that the radix points align:
+                    by reducing it to an integer addition by padding the numbers so that the radix points align:
                     \begin{center}
                         \begin{tabular}{crl}
                                 & 145     & .2332632 \\
@@ -47,8 +47,20 @@
           \end{enumerate}
           \newpage
 
-    \item
-
+    \item Note that $\rev_n a(x) = x^n \cdot a(\frac{1}{x})$. It holds that:
+          \begin{align*}
+              a                        & = qb + r                                                                                                             \\
+              a(x)                     & = q(x)b(x) + r(x)
+              \intertext{Substituting $x \implies \frac{1}{x}$:}
+              a(\frac{1}{x})           & = q(\frac{1}{x})b(\frac{1}{x}) + r(\frac{1}{x})                                                                      \\
+              \intertext{Then multiplying both sides with $x^n$:}
+              x^n \cdot a(\frac{1}{x}) & = x^n \cdot q(\frac{1}{x})b(\frac{1}{x}) + x^n \cdot r(\frac{1}{x})                                                  \\
+              \rev_n a(x)        & = x^{n - m} \cdot q(\frac{1}{x}) \cdot x^m \cdot b(\frac{1}{x}) + x^{n - m + 1} \cdot x^{m - 1} \cdot r(\frac{1}{x}) \\
+              \intertext{Note that $\deg b = m$ and $b$ is monic implies that $\deg q = n - m$ and $\deg r \leq m - 1$.
+                  This shows that the terms on the right-hand side of the equation are actually the reversals of the original polynomials $q, b, r$:}
+              \rev_n a(x)        & = \rev_{n - m} q(x) \cdot \rev_m b(x) + x^{n - m + 1} \cdot \rev_{m - 1} r(x)                      \\
+              \rev_n a           & = (\rev_{n - m} q)(\rev_m b) + x^{n - m + 1} \rev_{m - 1} r \\
+          \end{align*}
           \newpage
 
     \item
