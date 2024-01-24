@@ -55,15 +55,28 @@
               a(\frac{1}{x})           & = q(\frac{1}{x})b(\frac{1}{x}) + r(\frac{1}{x})                                                                      \\
               \intertext{Then multiplying both sides with $x^n$:}
               x^n \cdot a(\frac{1}{x}) & = x^n \cdot q(\frac{1}{x})b(\frac{1}{x}) + x^n \cdot r(\frac{1}{x})                                                  \\
-              \rev_n a(x)        & = x^{n - m} \cdot q(\frac{1}{x}) \cdot x^m \cdot b(\frac{1}{x}) + x^{n - m + 1} \cdot x^{m - 1} \cdot r(\frac{1}{x}) \\
+              \rev_n a(x)              & = x^{n - m} \cdot q(\frac{1}{x}) \cdot x^m \cdot b(\frac{1}{x}) + x^{n - m + 1} \cdot x^{m - 1} \cdot r(\frac{1}{x}) \\
               \intertext{Note that $\deg b = m$ and $b$ is monic implies that $\deg q = n - m$ and $\deg r \leq m - 1$.
                   This shows that the terms on the right-hand side of the equation are actually the reversals of the original polynomials $q, b, r$:}
-              \rev_n a(x)        & = \rev_{n - m} q(x) \cdot \rev_m b(x) + x^{n - m + 1} \cdot \rev_{m - 1} r(x)                      \\
-              \rev_n a           & = (\rev_{n - m} q)(\rev_m b) + x^{n - m + 1} \rev_{m - 1} r \\
+              \rev_n a(x)              & = \rev_{n - m} q(x) \cdot \rev_m b(x) + x^{n - m + 1} \cdot \rev_{m - 1} r(x)                                        \\
+              \rev_n a                 & = (\rev_{n - m} q)(\rev_m b) + x^{n - m + 1} \rev_{m - 1} r                                                          \\
           \end{align*}
           \newpage
 
-    \item
+    \item Let $\alpha = sB^e \sum_{i = 0}^{d - 1} \alpha_i B^{-i}$ and $\tilde{\alpha} = \tilde{s}B^{\tilde{e}}\sum_{i = 0}^{\tilde{d} - 1}
+              \tilde{\alpha}_i B^{-i}$, both $\in \mathbb{Q}_B$. Assume that $d \geq \tilde{d}$. A radix-point representation of a rational number can be reduced to:
+          \begin{align*}
+              \alpha & = sB^{e - (d - 1)} \sum_{i = 0}^{d - 1} \alpha_i B^{d - 1 - i} \\
+                     & = sB^{e - d + 1} \sum_{i = 0}^{d - 1} \alpha_i B^{d - 1 - i}
+          \end{align*}
+          Notice that the sum is an integer in base $B$. Since $d \geq \tilde{d}$, $\tilde{\alpha}$ can be padded with trailing zeros so that:
+          \begin{align*}
+              \tilde{\alpha}_i =
+              \begin{cases}
+                  \tilde{\alpha}_i, & 0 \leq i \leq \tilde{d} \leq d  \\
+                  0 \hspace{1cm}    & \text{otherwise.}
+              \end{cases}
+          \end{align*}
 
           \newpage
 
