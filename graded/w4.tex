@@ -88,7 +88,17 @@
           \newpage
 
     \item \begin{enumerate}
-              \item
+              \item Apply the definig quality $a = qb + r$ to $f(x)$, where $b = (x - \xi)$:
+                    \begin{align*}
+                        f(x)   & = q(x)(x - \xi) + r(x)       \\
+                        \intertext{Substitute $x \implies \xi$:}
+                        f(\xi) & = q(\xi)(\xi - \xi) + r(\xi) \\
+                        f(\xi) & = r(\xi)                     \\
+                        \intertext{Notice that since the divisor is a linear polynomial, then $r(x) = 0$ or $\deg{r(x)} = 0$. In both cases,
+                        $r(x)$ is a constant independent of $x$.}
+                        f(\xi) & = r \\
+                        f(\xi) & = f\rem{(x - \xi)}
+                    \end{align*}
           \end{enumerate}
 
           \newpage
