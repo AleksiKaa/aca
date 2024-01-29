@@ -95,9 +95,20 @@
                         f(\xi) & = q(\xi)(\xi - \xi) + r(\xi) \\
                         f(\xi) & = r(\xi)                     \\
                         \intertext{Notice that since the divisor is a linear polynomial, then $r(x) = 0$ or $\deg{r(x)} = 0$. In both cases,
-                        $r(x)$ is a constant independent of $x$.}
-                        f(\xi) & = r \\
+                            $r(x)$ is a constant independent of $x$.}
+                        f(\xi) & = r                          \\
                         f(\xi) & = f\rem{(x - \xi)}
+                    \end{align*}
+
+              \item Let $a = qb + a\rem{b}$. However, $a = pc + a\rem{c}$ too. Substituting $a$ in the first equation with the second:
+                    \begin{align*}
+                        qb + a\rem{b}          & = pc + a\rem{c}
+                        \intertext{Since $c$ divides $b$, $c$ is a multiple of $b$: $b = x \cdot c$, $x \in R$.}
+                        q \cdot (x\cdot c) + a\rem{b} & = pc + a\rem{c}              \\
+                        q \cdot (x\cdot c) + a\rem{b} & \equiv pc + a\rem{c} \mod{c} \\
+                        a\rem{b}               & \equiv a\rem{c} \mod{c}      \\
+                        (a\rem{b})\rem{c}      & = a\rem{c}                   \\
+                        a\rem{c}               & = (a\rem{b})\rem{c}
                     \end{align*}
           \end{enumerate}
 
