@@ -1,0 +1,104 @@
+\documentclass[11pt,a4paper]{article}
+\input{auxiliary.tex}
+
+%-----------------------------------------------
+%-----------------------------------------------
+
+\title{CS-E4500 Advanced Course in Algorithms}
+\author{Aleksi Kääriäinen  \\
+	Aalto University  \\
+	}
+
+\begin{document}
+
+\date{\today}
+
+\maketitle
+
+\newpage
+
+\section*{Week 4 exercices}
+
+\begin{enumerate}
+    \item
+          Let $p = 113$, $s = 10$, $k = 5$ and the secret $\varphi_0 = 99$. Let the points to be evaluated be $\xi_i =  1, 2, \dots s$.
+          Selecting $k - 1$ coefficients for $\varphi_{1}  \dots \varphi_{k - 1}$ independently and uniformly at random yields $\{112, 63, 41, 87\}$.
+          Thus, $f = 99 + 112x + 63x^2 + 41x^3 + 87x^4 \in \mathbb{Z}_p$ and the share $i$ is the pair $(\xi_i, f(\xi_i))$:
+
+          \begin{center}
+              \begin{tabular}{c|c|c}
+                  i & $\xi_i$ & $f(\xi_i)$ \\
+                  \hline
+                  0 & 1       & 63         \\
+                  1 & 2       & 35         \\
+                  2 & 3       & 3          \\
+                  3 & 4       & 9          \\
+                  4 & 5       & 36         \\
+                  5 & 6       & 8          \\
+                  6 & 7       & 16         \\
+                  7 & 8       & 92         \\
+                  8 & 9       & 96         \\
+                  9 & 10      & 55         \\
+              \end{tabular}
+          \end{center}
+
+          Now we want to show that the secret $\varphi_0$ is recoverable if a single entity knows $\geq k$ shares $(\xi_i, f(\xi_i))$.
+          Consider the first $k$ pairs and let us construct the Vandermonde matrix with the values $\xi_0, \dots \xi_4$.
+          \begin{align*}
+              V = \begin{bmatrix}
+                      1^0 & 1^1 & 1^2 & 1^3 & 1^4 \\
+                      2^0 & 2^1 & 2^2 & 2^3 & 2^4 \\
+                      3^0 & 3^1 & 3^2 & 3^3 & 3^4 \\
+                      4^0 & 4^1 & 4^2 & 4^3 & 4^4 \\
+                      5^0 & 5^1 & 5^2 & 5^3 & 5^4 \\
+                  \end{bmatrix} = \begin{bmatrix}
+                                      1 & 1 & 1  & 1  & 1  \\
+                                      1 & 2 & 4  & 8  & 16 \\
+                                      1 & 3 & 9  & 27 & 81 \\
+                                      1 & 4 & 16 & 64 & 30 \\
+                                      1 & 5 & 25 & 12 & 60 \\
+                                  \end{bmatrix}
+          \end{align*}
+          Now, inverting the Vandermonde matrix and multiplying it with a vector consisting of valuations of $f(\xi_i)$ should yield
+          the coefficients of $f$:
+          \begin{align*}
+              V^{-1}x = & \begin{bmatrix}
+                              1 & 1 & 1  & 1  & 1  \\
+                              1 & 2 & 4  & 8  & 16 \\
+                              1 & 3 & 9  & 27 & 81 \\
+                              1 & 4 & 16 & 64 & 30 \\
+                              1 & 5 & 25 & 12 & 60 \\
+                          \end{bmatrix}^{-1} \cdot \begin{bmatrix}
+                                                       63 \\ 35 \\ 3 \\ 9 \\ 36
+                                                   \end{bmatrix}               \\
+              =         & \begin{bmatrix}
+                              5   & 103 & 10  & 108 & 1  \\
+                              3   & 112 & 37  & 29  & 45 \\
+                              83  & 9   & 97  & 12  & 25 \\
+                              103 & 21  & 110 & 96  & 9  \\
+                              33  & 94  & 85  & 94  & 33
+                          \end{bmatrix} \cdot \begin{bmatrix}
+                                                  63 \\ 35 \\ 3 \\ 9 \\ 36
+                                              \end{bmatrix} = \begin{bmatrix}
+                                                                  99 \\ 112 \\ 63 \\ 41 \\ 87
+                                                              \end{bmatrix}
+          \end{align*}
+          Indeed, the result is a vector with the coefficients of $f$ in increasing order ordered by the degree of the term, meaning that the
+          secret $\varphi_0$ was recovered successfully.
+          \newpage
+
+    \item \begin{enumerate}
+              \item
+          \end{enumerate}
+
+          \newpage
+
+    \item
+
+          \newpage
+
+    \item
+
+          \newpage
+\end{enumerate}
+\end{document}
