@@ -102,24 +102,61 @@
 
               \item Let $a = qb + a\rem{b}$. However, $a = pc + a\rem{c}$ too. Substituting $a$ in the first equation with the second:
                     \begin{align*}
-                        qb + a\rem{b}          & = pc + a\rem{c}
+                        qb + a\rem{b}                 & = pc + a\rem{c}
                         \intertext{Since $c$ divides $b$, $c$ is a multiple of $b$: $b = x \cdot c$, $x \in R$.}
                         q \cdot (x\cdot c) + a\rem{b} & = pc + a\rem{c}              \\
                         q \cdot (x\cdot c) + a\rem{b} & \equiv pc + a\rem{c} \mod{c} \\
-                        a\rem{b}               & \equiv a\rem{c} \mod{c}      \\
-                        (a\rem{b})\rem{c}      & = a\rem{c}                   \\
-                        a\rem{c}               & = (a\rem{b})\rem{c}
+                        a\rem{b}                      & \equiv a\rem{c} \mod{c}      \\
+                        (a\rem{b})\rem{c}             & = a\rem{c}                   \\
+                        a\rem{c}                      & = (a\rem{b})\rem{c}
                     \end{align*}
           \end{enumerate}
 
           \newpage
 
     \item
+          Let us first construct a binary tree where all leaves are associated with the polynomial $s_v = x - \xi_v$ and all internal nodes with
+          the product of its children $s_u = s_{u0}s_{u1}$. Observe that for all $u$,
 
+          \[s_u = \prod_{v\in \{0,1 \}^k}(x - \xi_v),\]
+
+          where $v$ is the binary string of length $k$ associated with a leaf node, and $u$ is a prefix of $v$. Let us then associate each leaf node with
+          another polynomial $l_v = \lambda_v$. Then, for each internal node $u$, assign $l_u = l_{u0}s_{u1} + s_{u0}l_{u1}$. We get a binary tree of the
+          following structure:
+
+          \begin{center}
+            \includegraphics[scale=0.4]{pics/bintree.jpg}
+          \end{center}
+
+          We observe that for every internal node $u$, we have:
+          \begin{align*}
+            l_u & = \sum \lambda_i \prod_{j \neq i} (x - \xi_j), \\
+            \intertext{where $u$ is a prefix of both $i$ and $j$. And for the root node $\eps$:}
+            l_\eps & = \sum_{i = 0}^{e - 1} \lambda_i \prod_{_{j \neq i}^{j = 0}}^{e - 1} (x - \xi_j)
+          \end{align*}
+          The cost of each level in the tree is $O(M(e))$ operations using fast multiplication, and since there are
+          $O(\log_2 e)$ levels in the tree, the total cost of operations for the computation of the coefficients is
+          $O(M(e)\log_2 e)$.
           \newpage
 
-    \item
-
+    \item Following the hint, let us apply $\lambda_v = 1$ for all leaf nodes $v$. Thus we get the coefficients for $f$:
+          \begin{align*}
+            f & = l_\eps = \sum_{i = 0}^{e - 1} \prod_{_{j \neq i}^{j = 0}}^{e - 1} (x - \xi_j)
+            \intertext{At the root level:}
+            f & = \prod_{_{j \neq i}^{j = 0}} (x - \xi_j)
+            \intertext{Evaluate $f$ at $\xi_i:$}
+            f(\xi_i) & = \prod_{_{j \neq i}^{j = 0}} (\xi_i - \xi_j)
+          \end{align*}
+          For the second pass, let us apply for all $v$, 
+          \[ \lambda_i = \eta_i f(\xi_i)^{-1} = \eta_i \prod_{_{j \neq i}^{j = 0}} (\xi_i - \xi_j)^{-1} \]
+          Putting all this together, at the root of the tree $\eps$, we have:
+          \begin{align*}
+            l_\eps & = \sum_{i = 0}^{e - 1} \lambda_i \prod_{^{j = 0}_{j \neq i}}^{e - 1} (x - \xi_j) \\
+            l_\eps & = \sum_{i = 0}^{e - 1}\left(\eta_i \prod_{_{j \neq i}^{j = 0}} (\xi_i - \xi_j)^{-1} \right) \prod_{^{j = 0}_{j \neq i}}^{e - 1} (x - \xi_j)
+          \end{align*}
+          Thus we have constructed the Lagrange interpolation polynomial. Remember the result of problem 3 was that $l$ is computable
+          in $O(M(e)\log_2 e)$ operations. We used it twice in the construction of the Lagrange interpolation polynomial, thus the construction
+          is also $O(M(e)\log_2 e)$.
           \newpage
 \end{enumerate}
 \end{document}
