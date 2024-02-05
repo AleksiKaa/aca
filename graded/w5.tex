@@ -41,14 +41,41 @@
                         \Psi & = (7, 3, 9, 3, 2, 7, 3)
                     \end{align*}
 
-              \item Let $\Xi = (1, 2, 3, 4, 5, 6) \in \mathbb{F}_{13}^6$ and $\Gamma = (3, 8, 6, 0, 7, 1) \in \mathbb{F}_{13}^6$,
-                    with $e = 6$ and $d = 1$. Using Gao's decoding algorithm:
+              \item Let $\Xi = (1, 2, 3, 4, 5, 6) \in \mathbb{F}_{13}^6$ and $\Gamma = (3, 8, 6, 0, 7, 1) \in \mathbb{F}_{13}^6$.
+                    Using Gao's decoding algorithm:
                     \begin{align*}
-                        g_0 & = \prod_{i = 1}^{e}(x - \xi_i) \\
+                        g_0 & = \prod_{i = 1}^{e}(x - \xi_i)              \\
                             & = 5 + 4x + 12x^2 + 6x^3 + 6x^4 + 5x^5 + x^6
                     \end{align*}
                     Interpolating $g_1$ with $V_\Xi^{-1} \cdot \Gamma$:
                     \[ g_1 = 7 + x + 9x^3 + 5x^4 + 7x^5\]
+                    Executing the Extended Euclidean algorithm yields:
+                    \begin{center}
+                        \resizebox{\linewidth}{!}{
+                        \begin{tabular}{l|l|l|l|l}
+                            $i$ & $g_i$                                       & $s_i$                        & $t_i$                                 & $q_i$     \\
+                            \hline
+                            0   & $x^6 + 5x^5 + 6x^4 + 6x^3 + 12x^2 + 4x + 5$ & 1                            & 0                                     & 0         \\
+                            1   & $7x^5 + 5x^4 + 9x^3 + x + 7$                & 0                            & 1                                     & $2x + 3$  \\
+                            2   & $12x^4 + 5x^3 + 10x^2 + 10$                 & 1                            & $11x + 10$                            & $6x + 12$ \\
+                            3   & $6x^3 + 10x^2 + 6x + 4     $                & $7x + 1$                     & $12x^2 + 3x + 11$                     & $2x + 4$  \\
+                            4   & $10x^2 + 7x + 7$                            & $12x^2 + 9x + 10$            & $2x^3 + 11x^2 + 3x + 5$               & $11x + 5$ \\
+                            5   & $11x + 8$                                   & $11x^3 + 10x^2 + 8x + 3$     & $4x^4 + 12x^3 + 2x^2 + 11x + 12$      & $8x + 9$  \\
+                            6   & 0                                           & $3x^4 + 3x^3 + x^2 + 4x + 9$ & $7x^5 + 11x^4 + 8x^3 + 9x^2 + 3x + 1$ & 0         \\
+                        \end{tabular}
+                        }
+                    \end{center}
+                    Since $e = 6$ and $d = 1$, $D =(e + d + 1)/2 = 4$. From this, we obtain $h = 2$. Divide $g_{h + 1}$ by $t_{h + 1}$:
+                    \begin{align*}
+                        f_i &= g_{h + 1} \quo{t_{h + 1}} \\
+                            &= 11 + 7x
+                    \end{align*}
+                    Since $g_{h + 1} \rem{t_{h + 1}} = 0$ and $\deg{f_1} \leq d$, the decoding was successful.
+                    Checking the decoding by evaluating $f_1$ in $\Xi$:
+                    \begin{align*}
+                        f_1(\Xi) = (5, 12, 6, 0, 7, 1)
+                    \end{align*}
+                    Since the evaluation agrees with $\Gamma$ in all but two points, the decoding is indeed successful.
           \end{enumerate}
 
           \newpage
