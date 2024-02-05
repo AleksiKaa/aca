@@ -1,0 +1,61 @@
+\documentclass[11pt,a4paper]{article}
+\input{auxiliary.tex}
+
+%-----------------------------------------------
+%-----------------------------------------------
+
+\title{CS-E4500 Advanced Course in Algorithms}
+\author{Aleksi Kääriäinen  \\
+	Aalto University  \\
+	}
+
+\begin{document}
+
+\date{\today}
+
+\maketitle
+
+\newpage
+
+\section*{Week 5 exercices}
+
+\begin{enumerate}
+    \item Recall that a polynomial $f \in F[x]$ can be written as a product of linear factors $f = \prod_{i}(x - \xi_i)$,
+          where each $\xi_i$ is a root of $f$. Assume that a polynomial of degree at most $d$ has $d + 1$ distinct roots. Then,
+          \begin{align*}
+              f = \prod_{i = 0}^{d + 1}(x - \xi_i)
+          \end{align*}
+          This clearly shows a contradiction, since $f$ is of degree $d + 1$. Thus the number of distinct roots for a polynomial
+          of degree $d$ is at most $d$.
+          \newpage
+
+    \item \begin{enumerate}
+              \item Let the datavector $\Phi = (7, 6, 5, 4, 3) \in \mathbb{F}^5_{11}$, and the evaluation points
+                    $\Xi = (0, 1, 2, 3, 4, 5, 6) \in \mathbb{F}_{11}^7$. Construct a polynomial $f$ from the points of $\Phi$:
+                    \begin{align*}
+                        f = 7 + 6x + 5x^2 + 4x^3 + 3x^4
+                    \end{align*}
+                    The encoded representation of $\Phi$ is $f(\Xi)$:
+                    \begin{align*}
+                        \Psi & = (f(\xi_0), f(\xi_1), \dots f(\xi_i)) \\
+                        \Psi & = (7, 3, 9, 3, 2, 7, 3)
+                    \end{align*}
+
+              \item Let $\Xi = (1, 2, 3, 4, 5, 6)$ and $\Gamma = (3, 8, 6, 0, 7, 1)$, with $e = 6$ and $d = 1$. 
+              Using Gao's decoding algorithm:
+                    \begin{align*}
+                        g_0 = \prod_{i = 1}^{6}(x - \xi_i)
+                    \end{align*}
+          \end{enumerate}
+
+          \newpage
+
+    \item
+
+          \newpage
+
+    \item
+
+          \newpage
+\end{enumerate}
+\end{document}
