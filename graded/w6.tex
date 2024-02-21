@@ -178,11 +178,28 @@ array([[[1, 0, 0, 0],
                     $B \otimes D = [b_{h, j}D]$. The $i, j$th block of $(A \otimes C)(B \otimes D)$ is:
                     \begin{align*}
                         ((A \otimes C)(B \otimes D))_{i, j} & = \sum_{h \in [n]}(a_{i, h}C)(b_{h, j}D) \\
-                        & = \sum_{h \in [n]}(a_{i, h}b_{h, j})(CD) \\
-                        & = (AB)_{i, j} CD \\
-                        & = ((AB) \otimes (CD))_{i, j}
+                                                            & = \sum_{h \in [n]}(a_{i, h}b_{h, j})(CD) \\
+                                                            & = (AB)_{i, j} CD                         \\
+                                                            & = ((AB) \otimes (CD))_{i, j}
                     \end{align*}
                     The result is immediate from the definition of the Kronecker Product.
+
+              \item $K(A, B, C) \in \mathbb{F}^{m \times n \times p}$. Let $i \in [m], j \in [n], k \in [p]$. Similarly,
+                    $K(A^\prime, B^\prime, C^\prime) \in \mathbb{F}^{m^\prime \times n^\prime \times p^\prime}$.
+                    Let $i^\prime \in [m^\prime], j^\prime \in [n^\prime], k^\prime \in [p^\prime]$.
+                    Then, the Kronecker product
+                    \begin{align*}
+                          & (K(A, B, C) \otimes K(A^\prime, B^\prime, C^\prime))_{i m^\prime + i^\prime, j n^\prime + j^\prime, k p^\prime + k^\prime}        \\
+                        = & K(A, B, C)_{i, j, k} \cdot K(A^\prime, B^\prime, C^\prime)_{i^\prime, j^\prime, k^\prime}                                         \\
+                        = & \sum_{l \in [r]} A_{i, l} B_{j, l} C_{k, l} \cdot
+                        \sum_{l^\prime \in [r^\prime]}  A_{i^\prime, l^\prime}^\prime B_{j^\prime, l^\prime}^\prime C_{k^\prime, l^\prime}^\prime             \\
+                        = & \sum_{l \in [r]} \sum_{l^\prime \in [r^\prime]} A_{i, l}A^\prime_{i^\prime, l^\prime} \cdot B_{j, l}B^\prime_{j^\prime, l^\prime}
+                        \cdot C_{k,l}C^\prime_{k^\prime, l^\prime}                                                                                            \\
+                        = & \sum_{l \in [r]} \sum_{l^\prime \in [r^\prime]} (A \otimes A^\prime)_{i m^\prime + i^\prime, l r^\prime + l^\prime} \cdot
+                        (B \otimes B^\prime)_{j m^\prime + j^\prime, l r^\prime + l^\prime} \cdot
+                        (C \otimes C^\prime)_{k p^\prime + k^\prime, l r^\prime + l^\prime}                                                                   \\
+                        = & K(A \otimes A^\prime, B \otimes B^\prime, C \otimes C^\prime)_{i m^\prime + i^\prime, j n^\prime + j^\prime, k p^\prime + k^\prime}
+                    \end{align*}
 
           \end{enumerate}
 
