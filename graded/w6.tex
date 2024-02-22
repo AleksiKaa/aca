@@ -189,16 +189,24 @@ array([[[1, 0, 0, 0],
                     Let $i^\prime \in [m^\prime], j^\prime \in [n^\prime], k^\prime \in [p^\prime]$.
                     Then, the Kronecker product
                     \begin{align*}
-                          & (K(A, B, C) \otimes K(A^\prime, B^\prime, C^\prime))_{i m^\prime + i^\prime, j n^\prime + j^\prime, k p^\prime + k^\prime}        \\
-                        = & K(A, B, C)_{i, j, k} \cdot K(A^\prime, B^\prime, C^\prime)_{i^\prime, j^\prime, k^\prime}                                         \\
+                          & (K(A, B, C) \otimes K(A^\prime, B^\prime, C^\prime))_{i m^\prime + i^\prime, j n^\prime + j^\prime, k p^\prime + k^\prime}          \\
+                        = & K(A, B, C)_{i, j, k} \cdot K(A^\prime, B^\prime, C^\prime)_{i^\prime, j^\prime, k^\prime}                                           \\
                         = & \sum_{l \in [r]} A_{i, l} B_{j, l} C_{k, l} \cdot
-                        \sum_{l^\prime \in [r^\prime]}  A_{i^\prime, l^\prime}^\prime B_{j^\prime, l^\prime}^\prime C_{k^\prime, l^\prime}^\prime             \\
+                        \sum_{l^\prime \in [r^\prime]}  A_{i^\prime, l^\prime}^\prime B_{j^\prime, l^\prime}^\prime C_{k^\prime, l^\prime}^\prime               \\
                         = & \sum_{l \in [r]} \sum_{l^\prime \in [r^\prime]} A_{i, l}A^\prime_{i^\prime, l^\prime} \cdot B_{j, l}B^\prime_{j^\prime, l^\prime}
-                        \cdot C_{k,l}C^\prime_{k^\prime, l^\prime}                                                                                            \\
+                        \cdot C_{k,l}C^\prime_{k^\prime, l^\prime}                                                                                              \\
                         = & \sum_{l \in [r]} \sum_{l^\prime \in [r^\prime]} (A \otimes A^\prime)_{i m^\prime + i^\prime, l r^\prime + l^\prime} \cdot
                         (B \otimes B^\prime)_{j m^\prime + j^\prime, l r^\prime + l^\prime} \cdot
-                        (C \otimes C^\prime)_{k p^\prime + k^\prime, l r^\prime + l^\prime}                                                                   \\
+                        (C \otimes C^\prime)_{k p^\prime + k^\prime, l r^\prime + l^\prime}                                                                     \\
                         = & K(A \otimes A^\prime, B \otimes B^\prime, C \otimes C^\prime)_{i m^\prime + i^\prime, j n^\prime + j^\prime, k p^\prime + k^\prime}
+                    \end{align*}
+              \item For all $i \in [m]$, $w = T[u, v]$ is defined as:
+                    \begin{align*}
+                        w_i & = \sum_{j \in [n]} \sum_{k \in [p]} T_{i, j, k} u_j v_k                                           \\
+                            & = \sum_{j \in [n]} \sum_{k \in [p]} K(A, B, C)_{i, j, k}  u_j v_k                                 \\
+                            & = \sum_{j \in [n]} \sum_{k \in [p]} \sum_{l \in [r]} A_{i, l} B_{j, l} C_{k, l} u_j v_k           \\
+                            & = \sum_{j \in [n]} \sum_{k \in [p]} \sum_{l \in [r]} A_{i, l} ((B_{l, j}^T u_j) \cdot (C_{l, k}^T v_k)) \\
+                        w   & = A((B^T u) \odot (C^T v))
                     \end{align*}
 
           \end{enumerate}
