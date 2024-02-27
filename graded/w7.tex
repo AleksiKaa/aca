@@ -152,10 +152,23 @@
               \item The function $M_3$ is logically equivalent to the formula $(x_0 \land x_1) \lor (x_0 \land x_2) \lor (x_1 \land x_2)$. The formula can be formed into a boolean circuit
                     with 8 bits. Additional bits are needed to keep track of intermediary results.
                     \begin{center}
-                        \includegraphics[scale=0.3]{pics/boolean_circuit.jpg}
+                        \includegraphics[scale=0.25]{pics/boolean_circuit.jpg}
                     \end{center}
-              \item
-              \item
+              \item Transforming the circuit from part (b) to a reversible boolean circuit using the gate transformations
+                    from the lecture slides:
+                    \begin{center}
+                        \includegraphics[scale=0.25]{pics/rev_circuit.jpg}
+                    \end{center}
+              \item Transforming the circuit from part (c) to a quantum circuit:
+                    \begin{align*}
+                        G = & X^{[8|0]} X^{[8|1]} X^{[8|2]} CCX^{[8|2, 1, 0]} X^{[8|1]} X^{[8|2]} X^{[8|1]} X^{[8|3]} X^{[8|4]} \cdot \\
+                            & CCX^{[8|4, 3, 1]} X^{[8|3]} X^{[8|4]} CCX^{[8|6, 5, 2]} CCX^{[8|7, 5, 3]} CCX^{[8|7, 6, 4]}
+                    \end{align*}
+                    Since there are 8 qubits in the register, $q = 8$, and thus:
+                    \begin{align*}
+                        U_{M_3} & = G^{[8|5, 6, 7, 0, 4, 3, 2, 1]} \text{, with} \\
+                        W       & = ((x_0 \land x_1), (x_0 \land x_2), (x_1 \land x_2), ((x_0 \land x_1) \lor (x_0 \land x_2)))
+                    \end{align*}
           \end{enumerate}
           \newpage
 
