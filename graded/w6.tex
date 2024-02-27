@@ -85,7 +85,11 @@ def kruskal(A, B, C, n, r):
                     T[i][j][k] += A[i][l] \
                         * B[j][l] * C[k][l]
     return T.astype(int)
+
+kruskal(A, B, C, 4, 7)
+
                     \end{lstlisting}
+
                     yields:
 
                     \begin{lstlisting}[language=Python]
