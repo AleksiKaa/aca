@@ -166,18 +166,94 @@
                     \end{align*}
                     Since there are 8 qubits in the register, $q = 8$, and thus:
                     \begin{align*}
-                        U_{M_3} & = G^{[8|5, 6, 7, 0, 4, 3, 2, 1]} \text{, with} \\
+                        U_{M_3} & = G^{[8|5, 6, 7, 0, 4, 3, 2, 1]} \text{, with}                                                \\
                         W       & = ((x_0 \land x_1), (x_0 \land x_2), (x_1 \land x_2), ((x_0 \land x_1) \lor (x_0 \land x_2)))
                     \end{align*}
           \end{enumerate}
           \newpage
 
     \item
-
+          \begin{enumerate}
+              \item From the lecture slides, we have
+                    \begin{align*}
+                        H^{[3|0]} & = \frac{1}{\sqrt{2}}
+                        \begin{bmatrix}
+                            1 & 1  & 0 & 0  & 0 & 0  & 0 & 0  \\
+                            1 & -1 & 0 & 0  & 0 & 0  & 0 & 0  \\
+                            0 & 0  & 1 & 1  & 0 & 0  & 0 & 0  \\
+                            0 & 0  & 1 & -1 & 0 & 0  & 0 & 0  \\
+                            0 & 0  & 0 & 0  & 1 & 1  & 0 & 0  \\
+                            0 & 0  & 0 & 0  & 1 & -1 & 0 & 0  \\
+                            0 & 0  & 0 & 0  & 0 & 0  & 1 & 1  \\
+                            0 & 0  & 0 & 0  & 0 & 0  & 1 & -1
+                        \end{bmatrix} \\
+                        H^{[3|1]} & = \frac{1}{\sqrt{2}}
+                        \begin{bmatrix}
+                            1 & 0 & 1  & 0  & 0 & 0 & 0  & 0  \\
+                            0 & 1 & 0  & 1  & 0 & 0 & 0  & 0  \\
+                            1 & 0 & -1 & 0  & 0 & 0 & 0  & 0  \\
+                            0 & 1 & 0  & -1 & 0 & 0 & 0  & 0  \\
+                            0 & 0 & 0  & 0  & 1 & 0 & 1  & 0  \\
+                            0 & 0 & 0  & 0  & 0 & 1 & 0  & 1  \\
+                            0 & 0 & 0  & 0  & 1 & 0 & -1 & 0  \\
+                            0 & 0 & 0  & 0  & 0 & 1 & 0  & -1
+                        \end{bmatrix} \\
+                        H^{[3|2]} & = \frac{1}{\sqrt{2}}
+                        \begin{bmatrix}
+                            1 & 0 & 0 & 0 & 1  & 0  & 0  & 0  \\
+                            0 & 1 & 0 & 0 & 0  & 1  & 0  & 0  \\
+                            0 & 0 & 1 & 0 & 0  & 0  & 1  & 0  \\
+                            0 & 0 & 0 & 1 & 0  & 0  & 0  & 1  \\
+                            1 & 0 & 0 & 0 & -1 & 0  & 0  & 0  \\
+                            0 & 1 & 0 & 0 & 0  & -1 & 0  & 0  \\
+                            0 & 0 & 1 & 0 & 0  & 0  & -1 & 0  \\
+                            0 & 0 & 0 & 1 & 0  & 0  & 0  & -1
+                        \end{bmatrix}
+                    \end{align*}
+                    And it is easily verifiable that:
+                    \begin{align*}
+                        H^{[3|2]}H^{[3|1]}H^{[3|0]} & = H \otimes H \otimes H \\
+                                                    & = \frac{1}{2\sqrt{2}}
+                        \begin{bmatrix}
+                            1 & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\
+                            1 & -1 & 1  & -1 & 1  & -1 & 1  & -1 \\
+                            1 & 1  & -1 & -1 & 1  & 1  & -1 & -1 \\
+                            1 & -1 & -1 & 1  & 1  & -1 & -1 & 1  \\
+                            1 & 1  & 1  & 1  & -1 & -1 & -1 & -1 \\
+                            1 & -1 & 1  & -1 & -1 & 1  & -1 & 1  \\
+                            1 & 1  & -1 & -1 & -1 & -1 & 1  & 1  \\
+                            1 & -1 & -1 & 1  & -1 & 1  & 1  & -1 \\
+                        \end{bmatrix}
+                    \end{align*}
+              \item Working still in the same basis, i.e. $|0\ket = \begin{bmatrix}
+                            1 \\ 0
+                        \end{bmatrix}$. Thus $|000\ket$ is:
+                    \begin{align*}
+                        |000\ket & = |0\ket \otimes |0\ket \otimes |0\ket \\
+                                 & = \begin{bmatrix}
+                                         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+                                     \end{bmatrix}^T
+                    \end{align*}
+                    And
+                    \begin{align*}
+                        (H \otimes H \otimes H)|000\ket = \frac{1}{2\sqrt{2}} \begin{bmatrix}
+                                                                                  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+                                                                              \end{bmatrix}^T
+                    \end{align*}
+                    Thus each outcome $|000\ket \dots |111\ket$ have the same probability $P = (\frac{1}{2\sqrt{2}})^2 = \frac{1}{8}$.
+          \end{enumerate}
           \newpage
-
-    \item
-
+    \item Initialize $y_0 \gets x$. Then, for all $i \in 1, 2 \dots m - 1$, calculate \\ $y_i \gets (y_{j-1} \cdot y_{j-1}) \rem{N}$.
+          This results in $y_i = y^{2^i} \rem{N}$. Using fast multiplication and remaindering, this takes $O(mM(n))$ time, since there are $O(m)$ multiplications which each take
+          $O(M(n))$ time. Let $b$ be the binary string of the value of $e$, i.e. $b = e_{m-1} e_m \dots e_0$, since $e \in [2^m]$.
+          Then, initialize $z_{-1} \gets 1$, and compute:
+          \begin{align*}
+              z_i = \begin{cases}
+                        z_{i - 1}                     & \text{, if }  e_i = 0 \\
+                        (z_{i - 1} \cdot y_i) \rem{N} & \text{otherwise}
+                    \end{cases}
+          \end{align*}
+          Which results in $z_{m - 1} = x^e \rem{N}$. This, too, takes $O(mM(n))$ time, since there are $O(m)$ multiplications which each take $O(M(n))$ time.
           \newpage
 \end{enumerate}
 \end{document}
