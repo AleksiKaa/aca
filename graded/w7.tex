@@ -243,10 +243,10 @@
                     Thus each outcome $|000\ket \dots |111\ket$ have the same probability $P = (\frac{1}{2\sqrt{2}})^2 = \frac{1}{8}$.
           \end{enumerate}
           \newpage
-    \item Initialize $y_0 \gets x$. Then, for all $i \in 1, 2 \dots m - 1$, calculate \\ $y_i \gets (y_{j-1} \cdot y_{j-1}) \rem{N}$.
+    \item Initialize $y_0 = x$. Then, for all $i \in 1, 2 \dots m - 1$, calculate \\ $y_i = (y_{j-1} \cdot y_{j-1}) \rem{N}$.
           This results in $y_i = y^{2^i} \rem{N}$. Using fast multiplication and remaindering, this takes $O(mM(n))$ time, since there are $O(m)$ multiplications which each take
           $O(M(n))$ time. Let $b$ be the binary string of the value of $e$, i.e. $b = e_{m-1} e_m \dots e_0$, since $e \in [2^m]$.
-          Then, initialize $z_{-1} \gets 1$, and compute:
+          Then, initialize $z_{-1} = 1$, and compute:
           \begin{align*}
               z_i = \begin{cases}
                         z_{i - 1}                     & \text{, if }  e_i = 0 \\
