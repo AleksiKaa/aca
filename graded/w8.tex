@@ -81,11 +81,24 @@
                     And it has been shown that $P_d$ can be decomposed in such a way that it uses $3 \frac{d}{2} - 1$ two-qubit CX-gates.
           \end{enumerate}
 
-
-
           \newpage
 
-    \item
+    \item \begin{enumerate}
+
+              \item Notice that the shape of $B_j$ is $2^d \times 2^d$. Since a Kronecker product of multiple quantum gates
+                    applies them in parallel, the decomposition of $B_j$ can be seen as a quantum gate with a register of $d$-bits which applies the
+                    Hadamard gate on the $d - j - 1$:th qubit, and leaves the rest of the qubits unaffected. This
+                    representation of $B_j$ is identical to $H^{[d|d-j-1]}$, since by definition, $H^{[d|d-j-1]}$ applies the Hadamard
+                    transformation only to the $d-j-1$:th qubit in the system.
+
+              \item The number  $x \in [2^d]$:
+                    \begin{align*}
+                        x = \sum_{i = 0}^{d} 2^i x_{i},  \text{ where } x_i \in \{0,1\}
+                    \end{align*}
+                    Since both matrices $I_{2^j}$ and $\diag{(V_{\omega^{2^j}_{2^d}}^{2 \times 2^{d-j-1}})}$ are diagonal, it means that
+                    the matrix $T_j$ is also diagonal and its only non-zero values are $w_{2^d}^{2^j}$.
+                    Thus we can access the elements of $T_j$ with $(T_j)_{x, x}$.
+          \end{enumerate}
 
           \newpage
 
