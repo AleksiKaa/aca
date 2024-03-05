@@ -1,0 +1,100 @@
+\documentclass[11pt,a4paper]{article}
+\input{auxiliary.tex}
+
+%-----------------------------------------------
+%-----------------------------------------------
+
+\title{CS-E4500 Advanced Course in Algorithms}
+\author{Aleksi Kääriäinen  \\
+	Aalto University  \\
+	}
+
+\begin{document}
+
+\date{\today}
+
+\maketitle
+
+\newpage
+
+\section*{Week 8 exercices}
+
+\begin{enumerate}
+    \item \begin{enumerate}
+              \item From the week 7 lecture slides, the $CX$-gate in matrix form is:
+                    \begin{align*}
+                        CX = \begin{bmatrix}
+                                 1 & 0 & 0 & 0 \\
+                                 0 & 1 & 0 & 0 \\
+                                 0 & 0 & 0 & 1 \\
+                                 0 & 0 & 1 & 0
+                             \end{bmatrix},
+                    \end{align*}
+                    and its evaluations are
+                    \begin{align*}
+                        CX|00\ket & = |00\ket, & CX|01\ket  & = |01\ket, \\
+                        CX|10\ket & = |11\ket, & CX^|11\ket & = |10\ket
+                    \end{align*}
+                    The gate $CX^{[2|0, 1]}$ is the $CX$-gate with the places of the control and data bit swapped, i.e. the evaluations are
+                    \begin{align*}
+                        CX^{[2|0, 1]}|00\ket & = |00\ket, & CX^{[2|0, 1]}|01\ket & = |11\ket, \\
+                        CX^{[2|0, 1]}|10\ket & = |10\ket, & CX^{[2|0, 1]}|11\ket & = |01\ket,
+                    \end{align*} which corresponds to the matrix
+                    \begin{align*}
+                        CX^{[2|0, 1]} = \begin{bmatrix}
+                                            1 & 0 & 0 & 0 \\
+                                            0 & 0 & 0 & 1 \\
+                                            0 & 0 & 1 & 0 \\
+                                            0 & 1 & 0 & 0
+                                        \end{bmatrix}.
+                    \end{align*}
+                    Calculating the two-qubit circuit matrix yields:
+                    \begin{align*}
+                        A = (CX)(CX)^{[2|0, 1]}(CX) = \begin{bmatrix}
+                                                          1 & 0 & 0 & 0 \\
+                                                          0 & 0 & 1 & 0 \\
+                                                          0 & 1 & 0 & 0 \\
+                                                          0 & 0 & 0 & 1 \\
+                                                      \end{bmatrix}
+                    \end{align*}
+                    Evaluating the basis vectors in the circuit yields:
+                    \begin{align*}
+                        A|00\ket & = |00\ket  \\
+                        A|01\ket & = |10\ket  \\
+                        A|10\ket & = |01\ket  \\
+                        A|11\ket & = |11\ket,
+                    \end{align*}
+                    i.e. the circuit flips the bits if they are different.
+
+                    \newpage
+
+              \item The d-bit reversal permutation matrix $P_d$ reverses the input binary word $b \in \{0, 1\}^d$ such that
+                    \begin{align*}
+                        P_d|b_{d - 1}b_{d-2} \cdots b_1 b_0\ket = |b_0 b_1 \cdots b_{d - 2} b_{d - 1}\ket
+                    \end{align*}
+                    Notice that the circuit in part (a) uses exactly $3 \frac{d}{2}$ two-qubit gates and produces
+                    a reversal of the input. Applying the matrix $A$ from part (a) to each pair of bits $(j, d - 1 - j)$ for all
+                    $j = 0, 1, 2, \dots \frac{d}{2} - 1$ should then produce the bit reversal of $b$. Thus, let us define
+                    \begin{align*}
+                        P_d = \prod_{j \in [\frac{d}{2}]} (CX)^{[d|j, d - 1 - j]} (CX)^{[d|j, d - 1 - j]} (CX)^{[d| d - 1 - j, j]}.
+                    \end{align*}
+                    And it has been shown that $P_d$ can be decomposed in such a way that it uses $3 \frac{d}{2} - 1$ two-qubit CX-gates.
+          \end{enumerate}
+
+
+
+          \newpage
+
+    \item
+
+          \newpage
+
+    \item
+
+          \newpage
+
+    \item
+
+          \newpage
+\end{enumerate}
+\end{document}
